@@ -25,6 +25,24 @@ class Easy_Last_Updated {
 		add_filter( 'manage_pages_columns', array( $this, 'filter_manage_posts_columns' ) );
 		add_action( 'manage_posts_custom_column', array( $this, 'filter_manage_posts_custom_column' ), 10, 2 );
 		add_action( 'manage_pages_custom_column', array( $this, 'filter_manage_posts_custom_column' ), 10, 2 );
+		add_filter( 'manage_edit-post_sortable_columns', array( $this, 'manage_posts_sortable_columns' ) );
+		add_filter( 'manage_edit-page_sortable_columns', array( $this, 'manage_posts_sortable_columns' ) );
+	/**
+	 * Filter manage_posts_sortable_columns
+	 *
+	 * MAke the colunms sortable
+	 *
+	 * @since 1.0
+	 *
+	 * @param array $sortable_columns An array of sortable columns.
+	 *
+	 * @return array Sortable columns array with last_updated column.
+	 */
+	public function manage_posts_sortable_columns( $sortable_columns ) {
+
+		$sortable_columns['last_updated'] = 'last_updated';
+
+		return $sortable_columns;
 
 	}
 
