@@ -81,7 +81,6 @@ class Easy_Last_Updated {
 
 			$post = get_post( $post_id );
 
-			$current_time  = get_the_time( __( 'Y/m/d g:i:s a' ) );
 			$modified_time = $post->post_modified;
 			$time          = strtotime( $post->post_modified_gmt );
 
