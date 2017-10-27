@@ -55,14 +55,30 @@ class Easy_Last_Updated {
 	 *
 	 * @param string $column_name Column name.
 	 * @param int    $post_id     The post id.
-	 *
-	 * @return string The output to populate the post table cell.
 	 */
 	function filter_manage_posts_custom_column( $column_name, $post_id ) {
 
 		if ( 'last_updated' === $column_name ) {
 
-			echo 'testing';
+			$post = get_post( $post_id );
+
+			$current_time  = get_the_time( __( 'Y/m/d g:i:s a' ) );
+			$modified_time = $post->post_modified;
+			$time          = strtotime( $post->post_modified_gmt );
+
+			$time_diff = time() - $time;
+
+			if ( $time_diff > 0 && $time_diff < DAY_IN_SECONDS ) {
+
+				$current_time = sprintf( __( '%s ago' ), human_time_diff( $time ) );
+
+			} else {
+
+				$current_time = mysql2date( __( 'Y/m/d' ), $modified_time );
+
+			}
+
+			printf( '<abbr title="%s">%s</abbr>', esc_html( $modified_time ), esc_html( $current_time ) );
 
 		}
 	}
