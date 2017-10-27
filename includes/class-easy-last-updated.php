@@ -2,11 +2,11 @@
 /**
  * Adds functions and hooks to filter Post Type tables
  *
- * @since 1.0
+ * @since   1.0
  *
  * @package UFHealth\Easy_Last_Updated
  *
- * @author Chris Wiegman <cwiegman@ufl.edu>
+ * @author  Chris Wiegman <cwiegman@ufl.edu>
  */
 
 namespace UFHealth\Easy_Last_Updated;
@@ -21,87 +21,49 @@ class Easy_Last_Updated {
 	 */
 	public function __construct() {
 
-		add_filter( 'manage_users_columns', array( $this, 'filter_manage_users_columns' ) );
-		add_filter( 'manage_users_custom_column', array( $this, 'filter_manage_users_custom_column' ), 10, 3 );
+		add_filter( 'manage_posts_columns', array( $this, 'filter_manage_posts_columns' ), 10, 2 );
+		add_action( 'manage_posts_custom_column', array( $this, 'filter_manage_posts_custom_column' ), 10, 2 );
 
 	}
 
 	/**
-	 * Filter manage_users_columns
+	 * Filter manage_posts_columns
 	 *
-	 * Adds a column to the user table for each public post type.
+	 * Adds a column to the posts table to show last updated information.
 	 *
 	 * @since 1.0
 	 *
-	 * @param array $columns Array of user table columns.
+	 * @param array  $posts_columns An array of column names.
+	 * @param string $post_type     The post type slug.
 	 *
-	 * @return array Filtered array of user table columns
+	 * @return array Filtered array of post table columns
 	 */
-	function filter_manage_users_columns( $columns ) {
+	function filter_manage_posts_columns( $posts_columns, $post_type ) {
 
-		$args = array(
-			'public' => true,
-		);
+		$posts_columns['last_updated'] = esc_html__( 'Last Updated', 'ufhealth-uf-health-easy-last-updated' );
 
-		$post_types = get_post_types( $args, 'objects' );
-
-		foreach ( $post_types as $post_type ) {
-
-			if ( 'Posts' !== $post_type->label ) {
-				$columns[ $post_type->name ] = $post_type->label;
-			}
-		}
-
-		return $columns;
+		return $posts_columns;
 
 	}
 
 	/**
-	 * Filter manage_users_custom_column
+	 * Filter manage_posts_custom_column
 	 *
-	 * Filters the display output of custom columns in the Users list table.
+	 * Filters the display output of custom columns in the posts list table.
 	 *
 	 * @since 1.0
 	 *
-	 * @param string $output Custom column output. Default empty.
 	 * @param string $column_name Column name.
-	 * @param int    $user_id ID of the currently-listed user.
+	 * @param int    $post_id     The post id.
 	 *
-	 * @return string The output to populate the user table cell.
+	 * @return string The output to populate the post table cell.
 	 */
-	function filter_manage_users_custom_column( $output, $column_name, $user_id ) {
+	function filter_manage_posts_custom_column( $column_name, $post_id ) {
 
-		$args = array(
-			'public' => true,
-		);
+		if ( 'last_updated' === $column_name ) {
 
-		$post_types = get_post_types( $args, 'objects' );
+			echo 'testing';
 
-		foreach ( $post_types as $post_type ) {
-
-			if ( 'posts' !== $column_name && $post_type->name === $column_name ) {
-
-				$post_counts = count_many_users_posts( array( $user_id ), $post_type->name );
-				$post_count  = $post_counts[ $user_id ];
-				$output      = '';
-
-				if ( $post_count > 0 ) {
-
-					$output .= '<a href="edit.php?post_type=' . esc_attr( $post_type->name ) . '&author=' . absint( $user_id ) . '" class="edit">';
-					$output .= '<span aria-hidden="true">' . absint( $post_count ) . '</span>';
-					// translators: 1 the number of posts of this post type by the author 2. the post type.
-					$output .= '<span class="screen-reader-text">' . sprintf( _n( '%1$d %2$s by this author', '%1$d %2$s by this author', $post_count, 'ufhealth-who-wrote-what' ), number_format_i18n( $post_count ), $post_type->name ) . '</span>';
-					$output .= '</a>';
-
-				} else {
-
-					$output .= 0;
-
-				}
-			}
 		}
-
-		return $output;
-
 	}
 }
