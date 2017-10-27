@@ -27,6 +27,32 @@ class Easy_Last_Updated {
 		add_action( 'manage_pages_custom_column', array( $this, 'filter_manage_posts_custom_column' ), 10, 2 );
 		add_filter( 'manage_edit-post_sortable_columns', array( $this, 'manage_posts_sortable_columns' ) );
 		add_filter( 'manage_edit-page_sortable_columns', array( $this, 'manage_posts_sortable_columns' ) );
+		add_action( 'pre_get_posts', array( $this, 'action_pre_get_posts' ) );
+
+	}
+
+	/**
+	 * Action pre_get_posts
+	 *
+	 * @since 1.0
+	 *
+	 * @param \WP_Query $query The WP_Query instance (passed by reference).
+	 */
+	public function action_pre_get_posts( $query ) {
+
+		if ( ! is_admin() ) {
+			return;
+		}
+
+		$orderby = $query->get( 'orderby' );
+		$order   = 'asc' === $query->get( 'order' ) ? 'ASC' : 'DESC';
+
+		if ( 'last_updated' === $orderby ) {
+			$query->set( 'orderby', 'modified' );
+			$query->set( 'order', $order );
+		}
+	}
+
 	/**
 	 * Filter manage_posts_sortable_columns
 	 *
