@@ -53,7 +53,7 @@ class Easy_Last_Updated {
 	 *
 	 * @since 1.0
 	 *
-	 * @param array  $posts_columns An array of column names.
+	 * @param array $posts_columns An array of column names.
 	 *
 	 * @return array Filtered array of post table columns
 	 */
