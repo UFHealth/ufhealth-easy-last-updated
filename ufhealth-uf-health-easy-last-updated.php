@@ -9,7 +9,7 @@
  * Author URI: http://webservices.ufhealth.org
  * License: GPLv2
  *
- * @package UFHealth\uf_health_easy_last_updated
+ * @package UFHealth\Easy_Last_Updated
  */
 
 define( 'UFHEALTH_UF_HEALTH_EASY_LAST_UPDATED_VERSION', '1.0' );
@@ -25,8 +25,8 @@ function ufhealth_uf_health_easy_last_updated_loader() {
 	// Remember the text domain.
 	load_plugin_textdomain( 'ufhealth-uf-health-easy-last-updated', false, dirname( dirname( __FILE__ ) ) . '/languages' );
 
-	require( dirname( __FILE__ ) . '/includes/class-who-wrote-what.php' );
+	require dirname( __FILE__ ) . '/includes/class-easy-last-updated.php';
 
-	new \UFHealth\who_wrote_what\Who_Wrote_What();
+	new \UFHealth\Easy_Last_Updated\Easy_Last_Updated();
 
 }
