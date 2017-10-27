@@ -21,8 +21,10 @@ class Easy_Last_Updated {
 	 */
 	public function __construct() {
 
-		add_filter( 'manage_posts_columns', array( $this, 'filter_manage_posts_columns' ), 10, 2 );
+		add_filter( 'manage_posts_columns', array( $this, 'filter_manage_posts_columns' ) );
+		add_filter( 'manage_pages_columns', array( $this, 'filter_manage_posts_columns' ) );
 		add_action( 'manage_posts_custom_column', array( $this, 'filter_manage_posts_custom_column' ), 10, 2 );
+		add_action( 'manage_pages_custom_column', array( $this, 'filter_manage_posts_custom_column' ), 10, 2 );
 
 	}
 
@@ -34,11 +36,10 @@ class Easy_Last_Updated {
 	 * @since 1.0
 	 *
 	 * @param array  $posts_columns An array of column names.
-	 * @param string $post_type     The post type slug.
 	 *
 	 * @return array Filtered array of post table columns
 	 */
-	function filter_manage_posts_columns( $posts_columns, $post_type ) {
+	function filter_manage_posts_columns( $posts_columns ) {
 
 		$posts_columns['last_updated'] = esc_html__( 'Last Updated', 'ufhealth-uf-health-easy-last-updated' );
 
