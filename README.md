@@ -52,5 +52,9 @@ Minified JS and CSS is great in production but it can make development much hard
 
 ## Changelog
 
+##### 1.1
+* Update for Docker
+* Add packages for Apollo 2 compatibility
+
 ##### 1.0
 * Initial Release
