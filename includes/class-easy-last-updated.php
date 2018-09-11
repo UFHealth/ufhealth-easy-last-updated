@@ -85,7 +85,7 @@ class Easy_Last_Updated {
 	 */
 	function filter_manage_posts_columns( $posts_columns ) {
 
-		$posts_columns['last_updated'] = esc_html__( 'Last Updated', 'ufhealth-uf-health-easy-last-updated' );
+		$posts_columns['last_updated'] = esc_html__( 'Last Updated', 'ufhealth-easy-last-updated' );
 
 		return $posts_columns;
 

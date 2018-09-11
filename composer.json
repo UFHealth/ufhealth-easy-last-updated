@@ -1,5 +1,5 @@
 {
-	"name":              "WordPress-Plugins/ufhealth-uf-health-easy-last-updated",
+	"name":              "WordPress-Plugins/ufhealth-easy-last-updated",
 	"description":       "Shows the last updated time for content on the content type tables for easier auditing.",
 	"type":              "wordpress-plugin",
 	"keywords":          [],
@@ -12,19 +12,29 @@
 		}
 	],
 	"minimum-stability": "dev",
-	"require":           {
-		"php": ">=7.1"
-	},
-	"require-dev":       {
-		"phpunit/phpunit":           "5.7.*",
-		"10up/wp_mock":              "dev-master",
-		"wp-cli/wp-cli":             "dev-master",
-		"stevegrunwell/wp-enforcer": "0.5.0"
-	},
-	"post-install-cmd":  [
+	"require": {
+		"php": ">=7.2",
+		"ufhealth/composer-npm-bridge": "^4.0.6",
+		"ufhealth/composer-grunt-bridge": "^0.0.6"
+	  },
+	  "repositories": [
+		{
+		  "type": "composer",
+		  "url": "https://satis.webservices.ufhealth.org"
+		}
+	  ],
+	  "extra": {
+		"install-npm-dev": true
+	  },
+	  "post-install-cmd": [
 		"wp-enforcer"
-	],
-	"post-update-cmd":   [
+	  ],
+	  "post-update-cmd": [
 		"wp-enforcer"
-	]
+	  ],
+	  "require-dev": {
+		"phpunit/phpunit": "6.5.*",
+		"wp-cli/wp-cli": "^2.0.1",
+		"stevegrunwell/wp-enforcer": "dev-master"
+	  }
 }

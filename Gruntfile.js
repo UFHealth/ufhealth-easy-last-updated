@@ -18,32 +18,16 @@ module.exports = function (grunt) {
 					options: {
 						type:        'wp-plugin',
 						domainPath:  '/languages',
-						mainFile:    'ufhealth-uf-health-easy-last-updated.php',
-						potFilename: 'ufhealth-uf-health-easy-last-updated.pot',
+						mainFile:    'ufhealth-easy-last-updated.php',
+						potFilename: 'ufhealth-easy-last-updated.pot',
 						exclude:     ['vendor']
 					}
 				}
 			},
-
-			phpunit: {
-
-				classes: {
-					dir: 'tests/'
-				},
-
-				options: {
-
-					bin:        './vendor/bin/phpunit',
-					testSuffix: 'Tests.php',
-					bootstrap:  'bootstrap.php',
-					colors:     true
-
-				}
-			}
 		}
 	);
 
 	// A very basic default task.
-	grunt.registerTask('default', ['phpunit', 'makepot']);
+	grunt.registerTask('default', ['makepot']);
 
 };

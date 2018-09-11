@@ -1,4 +1,4 @@
-UF Health UF Health Easy Last Updated
+UF Health Easy Last Updated
 =============
 
 Shows the last updated time for content on the content type tables for easier auditing.
@@ -51,6 +51,10 @@ By default the Gruntfile only looks at a single JS and SCSS file. If you need to
 Minified JS and CSS is great in production but it can make development much harder. Fortunately Grunt helps us by building oth minified versions as well as development versions of all of our CSS and JS. To best utilize these in your plugin it is recommended to swap between using SCRIPT_DEBUG. Here's a great article to help you utilize this in your plugin: [https://pippinsplugins.com/use-script_debug-enable-non-minified-asset-files/](https://pippinsplugins.com/use-script_debug-enable-non-minified-asset-files/)
 
 ## Changelog
+
+##### 1.1
+* Update for Docker
+* Add packages for Apollo 2 compatibility
 
 ##### 1.0
 * Initial Release
