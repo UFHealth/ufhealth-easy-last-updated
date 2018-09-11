@@ -25,12 +25,10 @@ build_assets:
   stage: build
   image: php:7.2
   script:
-    - php composer.phar install
     - curl -sL https://deb.nodesource.com/setup_8.x | bash -
     - apt-get install nodejs -yqq
     - npm -g install grunt grunt-cli
-    - npm install
-    - grunt
+    - php composer.phar install
   artifacts:
     expire_in: 1 day
     paths:
