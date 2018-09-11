@@ -48,6 +48,7 @@ GitHub.sublime-settings
 
 .metadata
 bin/
+!tests/bin/
 tmp/
 *.tmp
 *.bak
@@ -200,3 +201,14 @@ assets/css/*.css
 assets/css/*.map
 assets/js/*.js
 assets/js/*.map
+coverage.clover
+
+# Docker files
+Docker/database
+Docker/wordpress
+Docker/logs
+Docker/debug
+!Docker/bin
+
+# Unit tests
+!/tests/bin/

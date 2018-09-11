@@ -1,4 +1,4 @@
-UF Health UF Health Easy Last Updated
+UF Health Easy Last Updated
 =============
 
 Shows the last updated time for content on the content type tables for easier auditing.

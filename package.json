@@ -1,12 +1,11 @@
 {
-  "name": "ufhealth-uf-health-easy-last-updated",
+  "name": "ufhealth-easy-last-updated",
   "private": true,
   "devDependencies": {
-    "grunt": "1.0.1",
-    "load-grunt-tasks": "3.5.2",
-    "grunt-wp-i18n": "1.0.0",
-    "grunt-phpunit": "0.3.6",
-    "time-grunt": "1.4.0"
+    "grunt": "^1.0.3",
+    "load-grunt-tasks": "^4.0.0",
+    "grunt-wp-i18n": "^1.0.2",
+    "time-grunt": "^1.4.0"
   },
   "author": "UF Health",
   "repository": {
